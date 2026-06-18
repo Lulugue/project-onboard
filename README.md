@@ -15,6 +15,16 @@ Give your AI agent a project path — it automatically:
 
 Your agent instantly understands the project without you explaining anything.
 
+## Why Project Onboard
+
+| | Understand-Anything | Project Onboard |
+|---|---|---|
+| Dependencies | Node.js + pnpm + knowledge graph | **None** |
+| Customizable rules | Generic C# only | **Pluggable per-engine rules** |
+| Output audience | Human onboarding guide | **AI agent context** |
+| Speed | 5-15 min (full graph) | **1-3 min** |
+| Engine awareness | Basic | **Unity .meta/prefab, UE .Build.cs, etc.** |
+
 ## Supported Project Types
 
 | Type | Signature |
