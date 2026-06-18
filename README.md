@@ -24,6 +24,10 @@ Your agent instantly understands the project without you explaining anything.
 | Output audience | Human onboarding guide | **AI agent context** |
 | Speed | 5-15 min (full graph) | **1-3 min** |
 | Engine awareness | Basic | **Unity .meta/prefab, UE .Build.cs, etc.** |
+| Auto-detection + override | ❌ | **Auto-detect or `--type` force** |
+| Composable | Standalone | **Can chain with Understand-Anything** |
+| Cross-platform | Claude Code only | **opencode / Claude Code / Codex / Cursor** |
+| Footprint | Repo + Node.js + pnpm | **12 files, ~30KB** |
 
 ## Supported Project Types
 
