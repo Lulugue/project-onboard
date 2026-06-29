@@ -1,6 +1,6 @@
 ---
 name: project-onboard
-description: Analyze any project directory and generate AGENTS.md for AI context. Use when the user asks to "onboard", "analyze this project", "understand this project", "generate AGENTS.md", or provides a project path they want to understand. Designed for Unity game development projects, with support for multiple languages and frameworks.
+description: Analyze any project directory and generate AGENTS.md for AI context. Use when the user asks to "onboard", "analyze this project", "understand this project", "generate AGENTS.md", or provides a project path they want to understand. Supports auto-detection of Unity, Unreal, Node.js, Python, Rust, Go, Java, C/C++, C#, Lua, and general projects.
 ---
 
 Copyright (C) 2026 ZionXiaoxiSuOGLocGo
@@ -8,7 +8,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
 
 # Project Onboard
 
-Turn any Unity game project directory into an AGENTS.md that gives the AI agent instant project context. Auto-detects Unity projects and applies Unity-specific analysis rules. Also supports Node.js, Python, Rust, Go, Java, C/C++, C#, Lua, and other project types with general analysis rules. Zero external dependencies — uses only built-in tools.
+Turn any project directory into an AGENTS.md that gives the AI agent instant project context. Auto-detects project type and applies type-specific analysis rules. Zero external dependencies — uses only built-in tools.
 
 ## When This Skill Triggers
 
@@ -16,14 +16,13 @@ Turn any Unity game project directory into an AGENTS.md that gives the AI agent 
 - "analyze my project"
 - "help me understand this project"
 - "generate AGENTS.md for this project"
-- "onboard my Unity project"
 - "what does this project do?"
 - User provides a project path without context
 
 ## Parameters
 
 - **path** (required): Project directory path
-- **type** (optional): Force project type, skip auto-detection. Values: `unity`, `nodejs`, `python`, `rust`, `go`, `java`, `cpp`, `csharp`, `lua`, `general`
+- **type** (optional): Force project type, skip auto-detection. Values: `unity`, `unreal`, `nodejs`, `python`, `rust`, `go`, `java`, `cpp`, `csharp`, `lua`, `general`
 - **output** (optional): Where to save AGENTS.md. Default: `<project_root>/AGENTS.md`
 
 ## Execution Flow
@@ -39,6 +38,7 @@ Use `glob` to look for 50-100 top-level entries. Match against the detection tab
 | Signature | Type | Rule Pack |
 |---|---|---|
 | `Assets/` + `ProjectSettings/` | unity | `references/unity.md` |
+| `Source/` + `.uproject` | unreal | `references/unreal.md` |
 | `package.json` without `Assets/` | nodejs | `references/nodejs.md` |
 | `pyproject.toml` or `requirements.txt` or `setup.py` | python | `references/python.md` |
 | `Cargo.toml` | rust | `references/rust.md` |
@@ -83,7 +83,7 @@ Write `<project_root>/AGENTS.md` with EXACTLY this structure:
 # [Project Name]
 
 ## Basic Information
-- **Type**: [Unity/other]
+- **Type**: [Unity/Node.js/Python/etc.]
 - **Language**: [primary language]
 - **Framework/Engine**: [specific version if known]
 - **Key Dependencies**: [3-8 most important packages]
